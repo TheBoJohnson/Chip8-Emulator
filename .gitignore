@@ -2,3 +2,5 @@ roms
 test
 *~
 *.org
+*.o
+chip8
