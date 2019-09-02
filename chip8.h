@@ -1,6 +1,7 @@
 #ifndef __CHIP8_H_INCLUDED__
 #define __CHIP8_H_INCLUDED__
 
+#include <string>
 #include "window.h"
 
 class chip8 {
@@ -55,7 +56,7 @@ public:
 	 0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 	};
 
-  bool drawFlag;
+  bool _drawFlag;
 
 
   bool setupGraphics();
@@ -66,7 +67,6 @@ public:
   void drawGraphics();
   void setKeys();
 
-  // TODO: Check to see if it's a good idea to set the Window as a pointer
-  Window* window = nullptr;
+  window* _chip8_window = nullptr;
 };
 #endif

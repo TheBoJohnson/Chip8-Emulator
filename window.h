@@ -1,37 +1,29 @@
-#ifndef __WINDOW_H_INCLUDED__
-#define __WINDOW_H_INCLUDED__
-#include <string>
+#ifndef __WINDOW_HEADER__
+#define __WINDOW_HEADER__
+
 #include <SDL2/SDL.h>
 
-class Window {
-public:
-  Window(const std::string &title, int pixelSize, int width, int height);
-  ~Window();
+class window {
+ public:
+  window(int height, int width);
+  ~window();
+  bool getWindowOpen() const;
+  void setBackgroundColor(int r, int g, int b, int a);
+  void pollEvent();
 
-  //void pollEvents();
-  SDL_Event* pollEvents();
-  inline bool isClosed() const {return _closed;}
-  inline SDL_Rect** getPixelArray() {return _pixelArray;}
-  inline SDL_Renderer* getRenderer() const {return _renderer;} 
-
-private:
-  bool init();
-
-  // Initial background of a black screen
-  void setScreen() const;
-
-  std::string _title;
-  int _pixelSize;
-  int _width;
   int _height;
+  int _width;
+  bool _isOpen = true;
+  SDL_Event _eventHolder;
+  
+  SDL_Window* _window;
+  SDL_Renderer* _renderer;
 
-  bool _closed = false;
   SDL_Rect* _pixelArray[64 * 32];
 
-  SDL_Window* _window = nullptr;
 
-protected:
-  SDL_Renderer* _renderer = nullptr;
+  bool init();
+
 };
 
 #endif
